@@ -23,8 +23,8 @@ class PersistentViewBot(commands.Bot):
     async def on_ready(self):
         await load_cogs()
         cmdsync = await self.tree.sync()
-        print(Fore.WHITE + current_time() + " > " + Fore.RESET + f"{self.user.name} ist online! Es wurden {str(len(cmdsync))} Slashcommands syncronisiert und {str(len(self.commands))} Commands. Version 2.0")
-        
+        print(Fore.WHITE + current_time() + " > " + Fore.RESET + f"{self.user.name} ist online! Es wurden {str(len(cmdsync))} Slashcommands syncronisiert und {str(len(self.commands))} Commands.") 
+bot = PersistentViewBot()  
 
 async def load_cogs():
     for root, dirs, files in os.walk("./cogs"):
@@ -38,7 +38,6 @@ async def load_cogs():
                     except Exception as e:
                         print(Fore.WHITE + current_time() + " > " + Fore.RED + "[FEHLER!] " + Fore.RESET + f"Failed to load {cog_path}: {e}")
 
-bot = PersistentViewBot()
 
 if __name__ == "__main__":
     bot.run(os.getenv("DISCORD_TOKEN"))
