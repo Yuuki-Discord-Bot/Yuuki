@@ -11,10 +11,6 @@ load_dotenv()
 def current_time():
     return datetime.now(pytz.timezone('Europe/Berlin')).time().strftime("%H:%M:%S")
 
-def config():
-    with open("depot/config.json", "r") as file:
-        return json.load(file)
-con = config()
 
 
 class PersistentViewBot(commands.Bot):
@@ -22,7 +18,7 @@ class PersistentViewBot(commands.Bot):
         intents = discord.Intents.all()
         intents.message_content = True
         intents.members = True
-        super().__init__(command_prefix=con["prefix"], intents=intents, help_command = None)
+        super().__init__(command_prefix="!", intents=intents, help_command = None)
     
     async def on_ready(self):
         await load_cogs()
